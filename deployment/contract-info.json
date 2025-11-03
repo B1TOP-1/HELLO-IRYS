@@ -1,0 +1,23 @@
+{
+  "contractName": "MintNFT",
+  "contractAddress": "0x8E842cA7AFa67d65C19B564D23fBB764F480227C",
+  "network": {
+    "name": "Irys Testnet",
+    "chainId": 1270,
+    "rpcUrl": "https://testnet-rpc.irys.xyz/v1/execution-rpc"
+  },
+  "deployer": "0xBcf44b94Cb014F336D91a6EB459e4004252921F8",
+  "deploymentDate": "2025-11-03",
+  "contractDetails": {
+    "name": "HELLO IRYS NFT",
+    "symbol": "HIRYSNFT",
+    "maxSupply": 1000,
+    "maxPerAddress": 3,
+    "metadataURI": "https://gateway.irys.xyz/B63ywEKnaGGv1puTVShBDQJDhmQVTx72Sym8FraGq1Gv"
+  },
+  "verification": {
+    "command": "npx hardhat verify --network irys 0x8E842cA7AFa67d65C19B564D23fBB764F480227C \"https://gateway.irys.xyz/B63ywEKnaGGv1puTVShBDQJDhmQVTx72Sym8FraGq1Gv\""
+  },
+  "abiLocation": "./abi/MintNFT.json"
+}
+
