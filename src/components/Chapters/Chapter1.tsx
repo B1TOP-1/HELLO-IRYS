@@ -37,19 +37,8 @@ const uploadText = async (text) => {
 
 console.log(await uploadText("Hello Irys!"));`
 
-  // 测验题目 - 单选题
-  const quizQuestions = [
-    {
-      id: 'q1',
-      question: 'Irys 的主要特点是什么？',
-      options: [
-        { id: 'a', text: '永久存储数据', isCorrect: true },
-        { id: 'b', text: '数据可以被删除', isCorrect: false },
-        { id: 'c', text: '无法保证数据永不丢失', isCorrect: false },
-        { id: 'd', text: '只支持图片存储', isCorrect: false },
-      ]
-    },
-  ]
+  // 测验题目 - 从翻译系统读取
+  const quizQuestions = t.quizQuestions.chapter1
 
   const handleQuizComplete = () => {
     setQuizCompleted(true)

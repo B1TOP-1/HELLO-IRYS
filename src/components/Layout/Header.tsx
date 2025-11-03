@@ -44,7 +44,7 @@ export default function Header() {
               className="px-3 py-1.5 rounded-md bg-dark-hover hover:bg-dark-border text-sm font-medium text-dark-text-secondary hover:text-dark-text-primary transition-all duration-200"
               title="Switch Language / 切换语言"
             >
-              {language === 'zh' ? '🇬🇧 English' : '🇨🇳 中文'}
+              {language === 'zh' ? 'English' : '中文'}
             </motion.button>
           </div>
         </div>

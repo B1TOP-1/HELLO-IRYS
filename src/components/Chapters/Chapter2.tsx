@@ -48,19 +48,8 @@ npm install dotenv`
   const envCode = `# .env
 PRIVATE_KEY=your_private_key_here`
 
-  // 测验题目 - 单选题
-  const quizQuestions = [
-    {
-      id: 'q1',
-      question: '这一章你学会了什么？',
-      options: [
-        { id: 'a', text: '开发之前必须要配置好环境', isCorrect: true },
-        { id: 'b', text: '无需环境直接开发', isCorrect: false },
-        { id: 'c', text: '可以明文私钥', isCorrect: false },
-        { id: 'd', text: '无需使用 IRYS SDK', isCorrect: false },
-      ]
-    },
-  ]
+  // 测验题目 - 从翻译系统读取
+  const quizQuestions = t.quizQuestions.chapter2
 
   const handleQuizComplete = () => {
     setQuizCompleted(true)

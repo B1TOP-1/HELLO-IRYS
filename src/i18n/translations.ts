@@ -245,6 +245,46 @@ export const translations = {
       retryQuiz: '重新测试',
       backToStudyBtn: '返回学习',
     },
+    
+    // 章节题目
+    quizQuestions: {
+      chapter1: [
+        {
+          id: 'q1',
+          question: 'Irys 的主要特点是什么？',
+          options: [
+            { id: 'a', text: '永久存储数据', isCorrect: true },
+            { id: 'b', text: '数据可以被删除', isCorrect: false },
+            { id: 'c', text: '无法保证数据永不丢失', isCorrect: false },
+            { id: 'd', text: '只支持图片存储', isCorrect: false },
+          ]
+        },
+      ],
+      chapter2: [
+        {
+          id: 'q1',
+          question: '这一章你学会了什么？',
+          options: [
+            { id: 'a', text: '开发之前必须要配置好环境', isCorrect: true },
+            { id: 'b', text: '无需环境直接开发', isCorrect: false },
+            { id: 'c', text: '可以明文私钥', isCorrect: false },
+            { id: 'd', text: '无需使用 IRYS SDK', isCorrect: false },
+          ]
+        },
+      ],
+      chapter3: [
+        {
+          id: 'q1',
+          question: '上传文本数据时，为什么要使用 Buffer.from(text, "utf-8")？',
+          options: [
+            { id: 'a', text: '为了支持中文等多语言字符', isCorrect: true },
+            { id: 'b', text: '为了加密数据', isCorrect: false },
+            { id: 'c', text: '为了压缩数据', isCorrect: false },
+            { id: 'd', text: '为了加快上传速度', isCorrect: false },
+          ]
+        },
+      ],
+    },
   },
   
   en: {
@@ -493,6 +533,46 @@ export const translations = {
       answerIncorrectDesc: 'Some answers are incorrect. Please review the content and try again!',
       retryQuiz: 'Retry Quiz',
       backToStudyBtn: 'Back to Study',
+    },
+    
+    // Chapter Quiz Questions
+    quizQuestions: {
+      chapter1: [
+        {
+          id: 'q1',
+          question: 'What is the main feature of Irys?',
+          options: [
+            { id: 'a', text: 'Permanent data storage', isCorrect: true },
+            { id: 'b', text: 'Data can be deleted', isCorrect: false },
+            { id: 'c', text: 'Cannot guarantee data never lost', isCorrect: false },
+            { id: 'd', text: 'Only supports image storage', isCorrect: false },
+          ]
+        },
+      ],
+      chapter2: [
+        {
+          id: 'q1',
+          question: 'What did you learn in this chapter?',
+          options: [
+            { id: 'a', text: 'Environment must be configured before development', isCorrect: true },
+            { id: 'b', text: 'Can develop without environment setup', isCorrect: false },
+            { id: 'c', text: 'Can store private key in plaintext', isCorrect: false },
+            { id: 'd', text: 'No need to use IRYS SDK', isCorrect: false },
+          ]
+        },
+      ],
+      chapter3: [
+        {
+          id: 'q1',
+          question: 'Why use Buffer.from(text, "utf-8") when uploading text data?',
+          options: [
+            { id: 'a', text: 'To support multilingual characters like Chinese', isCorrect: true },
+            { id: 'b', text: 'To encrypt data', isCorrect: false },
+            { id: 'c', text: 'To compress data', isCorrect: false },
+            { id: 'd', text: 'To speed up upload', isCorrect: false },
+          ]
+        },
+      ],
     },
   },
 }

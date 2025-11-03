@@ -107,19 +107,8 @@ const uploadText = async (text) => {
 // Call function to upload sample text
 await uploadText("Hello World from IRYS!");`
 
-  // 测验题目
-  const quizQuestions = [
-    {
-      id: 'q1',
-      question: '上传文本数据时，为什么要使用 Buffer.from(text, "utf-8")？',
-      options: [
-        { id: 'a', text: '为了支持中文等多语言字符', isCorrect: true },
-        { id: 'b', text: '为了加密数据', isCorrect: false },
-        { id: 'c', text: '为了压缩数据', isCorrect: false },
-        { id: 'd', text: '为了加快上传速度', isCorrect: false },
-      ]
-    },
-  ]
+  // 测验题目 - 从翻译系统读取
+  const quizQuestions = t.quizQuestions.chapter3
 
   const handleQuizComplete = () => {
     setQuizCompleted(true)
