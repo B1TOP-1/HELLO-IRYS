@@ -26,11 +26,9 @@ npm install
 1. 访问 [WalletConnect Cloud](https://cloud.walletconnect.com)
 2. 注册并创建项目
 3. 复制 Project ID
-4. 在以下文件中替换 `YOUR_WALLETCONNECT_PROJECT_ID`：
-   - `src/config/wagmi.ts`
-   - `src/main.tsx`
+4. 在 `src/config/wagmi.ts` 文件中替换 `YOUR_WALLETCONNECT_PROJECT_ID`
 
-详细说明请查看 [WALLET_SETUP.md](./WALLET_SETUP.md)
+详细说明请查看 [docs/WALLET_FEATURES.md](./docs/WALLET_FEATURES.md)
 
 ### 3. 启动开发服务器
 
@@ -57,8 +55,19 @@ npm run preview
 1. **第一步：了解 Irys** - 介绍 Irys 的概念和核心特性
 2. **第二步：环境准备** - 安装依赖和配置开发环境
 3. **第三步：上传数据** - 学习如何上传文本和文件
-4. **第四步：查询数据** - 了解如何查询和检索数据
-5. **第五步：进阶使用** - 探索高级功能和最佳实践
+4. **第四步：上传成功** - 理解上传成功后的响应数据及其重要性
+5. **第五步：接受挑战** - 领取 NFT 奖励并接受新的挑战任务
+
+## 🎯 NFT 功能
+
+项目包含一个完整的 NFT 铸造系统：
+
+- 📝 智能合约部署脚本（位于 `deployment/scripts/`）
+- 🎨 NFT 铸造界面（教程第五步）
+- 👛 我的 NFT 查看页面
+- 📦 完整的 ABI 和合约信息
+
+详细说明请查看 [deployment/README.md](./deployment/README.md)
 
 ## 🛠️ 技术栈
 
@@ -68,18 +77,20 @@ npm run preview
 - **Tailwind CSS** - 样式框架
 - **Framer Motion** - 动画库
 - **Wagmi** - Web3 React Hooks
-- **Web3Modal** - 钱包连接界面
-- **Ethers.js** - 以太坊交互
+- **RainbowKit** - 钱包连接 UI 组件
+- **Viem** - 以太坊交互库
+- **Ethers.js** - 以太坊交互（部分功能）
 
 ## 👛 钱包功能
 
-应用右上角集成了钱包连接组件，功能包括：
+应用右上角集成了钱包连接组件（使用 RainbowKit），功能包括：
 
-- ✅ 一键连接 MetaMask、WalletConnect 等钱包
-- ✅ 自动识别 Arbitrum Sepolia（Irys 测试网）
+- ✅ 一键连接 MetaMask、WalletConnect、Coinbase Wallet 等钱包
+- ✅ 自动识别 Irys Testnet（测试网）
 - ✅ 实时显示余额和账户地址
 - ✅ 网络状态指示器
 - ✅ 自动重连和网络切换
+- ✅ NFT 铸造功能（需要连接钱包）
 
 ## 🌐 语言切换
 

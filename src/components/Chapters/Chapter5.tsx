@@ -25,7 +25,7 @@ interface ChapterProps {
   isLast: boolean
 }
 
-export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
+export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: ChapterProps) {
   const { t, language } = useLanguage()
   useChapterProgress(5) // 追踪第五章进度
   const [selectedChallenge, setSelectedChallenge] = useState<'file' | 'image' | null>(null)
@@ -35,7 +35,7 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
   const [modalChallengeType, setModalChallengeType] = useState<'file' | 'image'>('file')
   
   // 钱包和网络
-  const { address, isConnected } = useAccount()
+  const { isConnected } = useAccount()
   const chainId = useChainId()
   const isCorrectNetwork = chainId === 1270 // Irys Testnet
   
@@ -80,23 +80,23 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
     >
       {/* 标题 / Title */}
       <div className="text-center">
-        <h2 className="text-4xl font-bold gradient-text mb-4">
+        <h2 className="text-2xl md:text-4xl font-bold gradient-text mb-4 px-4">
           {t.common.acceptChallengeFullTitle}
         </h2>
       </div>
 
       {/* 更新上传成功 + 废话 / Upload Success Update + Description */}
-      <div className="space-y-6">
-        <div className="p-6 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl shadow-lg">
-          <div className="flex items-start gap-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
-              <CheckCircledIcon className="w-8 h-8 text-white" />
+      <div className="space-y-4 md:space-y-6 px-4 md:px-0">
+        <div className="p-4 md:p-6 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl shadow-lg">
+          <div className="flex items-start gap-3 md:gap-4">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+              <CheckCircledIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
             </div>
-            <div>
-              <h3 className="text-2xl font-semibold text-green-400 mb-2">
+            <div className="flex-1 min-w-0">
+              <h3 className="text-xl md:text-2xl font-semibold text-green-400 mb-2">
                 {t.common.dataUploadSuccess}
               </h3>
-              <p className="text-dark-text-secondary leading-relaxed">
+              <p className="text-sm md:text-base text-dark-text-secondary leading-relaxed">
                 {language === 'zh' 
                   ? '恭喜你！你已经成功完成了第一次数据上传。你的数据现在已经永久存储在去中心化网络上，任何人都可以通过交易 ID 访问它。这是你迈向 Web3 世界的重要一步！'
                   : "Congratulations! You've successfully completed your first data upload. Your data is now permanently stored on the decentralized network, accessible to anyone via the transaction ID. This is an important step into the Web3 world!"}
@@ -106,33 +106,33 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
         </div>
 
         {/* NFT 奖励部分 / NFT Reward Section */}
-        <div className="p-8 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-orange-500/10 border border-purple-500/30 rounded-xl shadow-2xl">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center mb-4">
+        <div className="p-4 md:p-8 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-orange-500/10 border border-purple-500/30 rounded-xl shadow-2xl">
+          <div className="text-center mb-4 md:mb-6">
+            <div className="inline-flex items-center justify-center mb-3 md:mb-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full blur-2xl opacity-60 animate-pulse"></div>
-                <div className="relative w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-2xl">
-                  <RocketIcon className="w-10 h-10 text-white" />
+                <div className="relative w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-2xl">
+                  <RocketIcon className="w-8 h-8 md:w-10 md:h-10 text-white" />
                 </div>
               </div>
             </div>
-            <h3 className="text-3xl font-bold gradient-text mb-3">
+            <h3 className="text-2xl md:text-3xl font-bold gradient-text mb-2 md:mb-3 px-4">
               {t.common.nftRewardTitle}
             </h3>
-            <p className="text-lg text-dark-text-secondary max-w-2xl mx-auto">
+            <p className="text-sm md:text-lg text-dark-text-secondary max-w-2xl mx-auto px-4">
               {t.common.nftRewardDesc}
             </p>
           </div>
 
           {/* NFT 预览图片 / NFT Preview Image */}
-          <div className="flex justify-center mb-8">
-            <div className="relative group">
+          <div className="flex justify-center mb-6 md:mb-8 px-4">
+            <div className="relative group w-full max-w-[288px]">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-              <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-3 shadow-2xl">
+              <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-2 md:p-3 shadow-2xl">
                 <img
                   src="https://file.notion.so/f/f/805c8ee6-d632-43a5-bb85-5b1e2e4a9000/a9d1ae37-80d6-4360-8a8d-fc65e52102b5/Discord_PFP_Teal.gif?table=block&id=189e9455-e498-8035-b188-f1ff4c0fb8c9&spaceId=805c8ee6-d632-43a5-bb85-5b1e2e4a9000&expirationTimestamp=1762192800000&signature=E63oVInCyM-SIZzkebT0qJBn7b4YA4ILYcFQ4c6hoRU"
                   alt="HELLO IRYS NFT"
-                  className="w-72 h-72 object-cover rounded-xl shadow-lg"
+                  className="w-full h-auto aspect-square object-cover rounded-xl shadow-lg"
                 />
                 <div className="absolute -top-2 -right-2 bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                   NFT
@@ -142,46 +142,46 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
           </div>
 
           {/* 铸造按钮和状态 / Mint Button and Status */}
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4 px-4 md:px-0">
             {!isConnected ? (
-              <div className="p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-center">
-                <p className="text-yellow-400">
+              <div className="p-3 md:p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-center">
+                <p className="text-yellow-400 text-sm md:text-base">
                   {t.common.connectWalletToMint}
                 </p>
               </div>
             ) : !isCorrectNetwork ? (
-              <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-center">
-                <p className="text-red-400 flex items-center justify-center gap-2">
-                  <CrossCircledIcon className="w-5 h-5" />
+              <div className="p-3 md:p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-center">
+                <p className="text-red-400 text-sm md:text-base flex items-center justify-center gap-2">
+                  <CrossCircledIcon className="w-4 h-4 md:w-5 md:h-5" />
                   {t.common.wrongNetwork}
                 </p>
               </div>
             ) : mintSuccess ? (
-              <div className="space-y-4">
-                <div className="p-6 bg-green-500/10 border border-green-500/30 rounded-lg text-center">
-                  <CheckCircledIcon className="w-12 h-12 text-green-400 mx-auto mb-3" />
-                  <p className="text-green-400 text-lg font-semibold mb-2">
+              <div className="space-y-3 md:space-y-4">
+                <div className="p-4 md:p-6 bg-green-500/10 border border-green-500/30 rounded-lg text-center">
+                  <CheckCircledIcon className="w-10 h-10 md:w-12 md:h-12 text-green-400 mx-auto mb-2 md:mb-3" />
+                  <p className="text-green-400 text-base md:text-lg font-semibold mb-2">
                     {t.common.mintSuccessful}
                   </p>
-                  <p className="text-dark-text-secondary text-sm mb-4">
+                  <p className="text-dark-text-secondary text-xs md:text-sm mb-3 md:mb-4">
                     {language === 'zh' ? '你已成功铸造 NFT！' : 'You have successfully minted an NFT!'}
                   </p>
-                  <div className="flex gap-3 justify-center flex-wrap">
+                  <div className="flex gap-2 md:gap-3 justify-center flex-wrap">
                     {txHash && (
                       <a
                         href={`https://testnet-explorer.irys.xyz/tx/${txHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 border border-purple-500/50 rounded-lg text-purple-400 hover:bg-purple-500/30 hover:text-purple-300 transition-colors"
+                        className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-purple-500/20 border border-purple-500/50 rounded-lg text-purple-400 hover:bg-purple-500/30 hover:text-purple-300 transition-colors text-sm md:text-base"
                       >
                         {t.common.viewOnExplorer} →
                       </a>
                     )}
                     <button
                       onClick={() => setShowDetails(!showDetails)}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/50 rounded-lg text-blue-400 hover:bg-blue-500/30 hover:text-blue-300 transition-colors"
+                      className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-blue-500/20 border border-blue-500/50 rounded-lg text-blue-400 hover:bg-blue-500/30 hover:text-blue-300 transition-colors text-sm md:text-base"
                     >
-                      <StarIcon className="w-4 h-4" />
+                      <StarIcon className="w-3 h-3 md:w-4 md:h-4" />
                       {language === 'zh' ? '查看 NFT 详情' : 'View NFT Details'}
                     </button>
                   </div>
@@ -193,49 +193,49 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="bg-dark-surface/80 backdrop-blur-sm border border-dark-border rounded-xl p-6"
+                    className="bg-dark-surface/80 backdrop-blur-sm border border-dark-border rounded-xl p-4 md:p-6"
                   >
-                    <h4 className="text-xl font-semibold text-dark-text-primary mb-4 flex items-center gap-2">
-                      <StarIcon className="w-5 h-5 text-yellow-400" />
+                    <h4 className="text-lg md:text-xl font-semibold text-dark-text-primary mb-3 md:mb-4 flex items-center gap-2">
+                      <StarIcon className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
                       {t.common.nftDetails}
                     </h4>
                     
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
-                        <span className="text-dark-text-secondary">{t.common.nftName}</span>
-                        <span className="text-dark-text-primary font-semibold">HELLO IRYS NFT</span>
+                    <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                      <div className="flex justify-between items-center p-2 md:p-3 bg-dark-hover rounded-lg">
+                        <span className="text-dark-text-secondary text-sm md:text-base">{t.common.nftName}</span>
+                        <span className="text-dark-text-primary font-semibold text-sm md:text-base">HELLO IRYS NFT</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
-                        <span className="text-dark-text-secondary">{t.common.nftSymbol}</span>
-                        <span className="text-dark-text-primary font-semibold">HIRYSNFT</span>
+                      <div className="flex justify-between items-center p-2 md:p-3 bg-dark-hover rounded-lg">
+                        <span className="text-dark-text-secondary text-sm md:text-base">{t.common.nftSymbol}</span>
+                        <span className="text-dark-text-primary font-semibold text-sm md:text-base">HIRYSNFT</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
-                        <span className="text-dark-text-secondary">{t.common.yourMintedCount}</span>
-                        <span className="text-purple-400 font-semibold">{mintedCount} / 3</span>
+                      <div className="flex justify-between items-center p-2 md:p-3 bg-dark-hover rounded-lg">
+                        <span className="text-dark-text-secondary text-sm md:text-base">{t.common.yourMintedCount}</span>
+                        <span className="text-purple-400 font-semibold text-sm md:text-base">{mintedCount} / 3</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
-                        <span className="text-dark-text-secondary">{t.common.remainingMints}</span>
-                        <span className="text-green-400 font-semibold">{remainingMints}</span>
+                      <div className="flex justify-between items-center p-2 md:p-3 bg-dark-hover rounded-lg">
+                        <span className="text-dark-text-secondary text-sm md:text-base">{t.common.remainingMints}</span>
+                        <span className="text-green-400 font-semibold text-sm md:text-base">{remainingMints}</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
-                        <span className="text-dark-text-secondary">{t.common.totalSupplyLabel}</span>
-                        <span className="text-dark-text-primary font-semibold">{totalSupply}</span>
+                      <div className="flex justify-between items-center p-2 md:p-3 bg-dark-hover rounded-lg">
+                        <span className="text-dark-text-secondary text-sm md:text-base">{t.common.totalSupplyLabel}</span>
+                        <span className="text-dark-text-primary font-semibold text-sm md:text-base">{totalSupply}</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
-                        <span className="text-dark-text-secondary">{t.common.remainingSupplyLabel}</span>
-                        <span className="text-blue-400 font-semibold">{remainingSupply}</span>
+                      <div className="flex justify-between items-center p-2 md:p-3 bg-dark-hover rounded-lg">
+                        <span className="text-dark-text-secondary text-sm md:text-base">{t.common.remainingSupplyLabel}</span>
+                        <span className="text-blue-400 font-semibold text-sm md:text-base">{remainingSupply}</span>
                       </div>
                     </div>
                   </motion.div>
                 )}
               </div>
             ) : (
-              <div className="text-center">
+              <div className="text-center px-4 md:px-0">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     onClick={mint}
                     disabled={!canMint || isMinting}
-                    className={`px-8 py-4 text-lg font-semibold ${
+                    className={`w-full md:w-auto px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold ${
                       !canMint || isMinting
                         ? 'opacity-50 cursor-not-allowed'
                         : 'bg-gradient-to-r from-purple-500 to-pink-600 hover:shadow-lg hover:shadow-purple-500/50'
@@ -261,17 +261,17 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
                 </motion.div>
                 
                 {mintError && (
-                  <p className="mt-3 text-red-400 text-sm">{mintError}</p>
+                  <p className="mt-2 md:mt-3 text-red-400 text-xs md:text-sm px-4">{mintError}</p>
                 )}
                 
                 {!canMint && remainingMints === 0 && (
-                  <p className="mt-3 text-yellow-400 text-sm">
+                  <p className="mt-2 md:mt-3 text-yellow-400 text-xs md:text-sm px-4">
                     {t.common.mintLimitReached}
                   </p>
                 )}
                 
                 {!canMint && remainingSupply === 0 && (
-                  <p className="mt-3 text-red-400 text-sm">
+                  <p className="mt-2 md:mt-3 text-red-400 text-xs md:text-sm px-4">
                     {t.common.soldOut}
                   </p>
                 )}
@@ -281,20 +281,20 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
         </div>
 
         {/* 发起新的挑战 / Launch New Challenge */}
-        <div className="p-8 bg-dark-surface border border-dark-border rounded-xl shadow-xl">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center mb-4">
+        <div className="p-4 md:p-8 bg-dark-surface border border-dark-border rounded-xl shadow-xl">
+          <div className="text-center mb-6 md:mb-8">
+            <div className="inline-flex items-center justify-center mb-3 md:mb-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-full blur-xl opacity-50"></div>
-                <div className="relative w-20 h-20 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-full flex items-center justify-center shadow-2xl">
-                  <TargetIcon className="w-10 h-10 text-white" />
+                <div className="relative w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-full flex items-center justify-center shadow-2xl">
+                  <TargetIcon className="w-8 h-8 md:w-10 md:h-10 text-white" />
                 </div>
               </div>
             </div>
-            <h3 className="text-3xl font-bold text-dark-text-primary mb-3">
+            <h3 className="text-2xl md:text-3xl font-bold text-dark-text-primary mb-2 md:mb-3 px-4">
               {t.common.readyForChallenge}
             </h3>
-            <p className="text-lg text-dark-text-secondary max-w-2xl mx-auto">
+            <p className="text-sm md:text-lg text-dark-text-secondary max-w-2xl mx-auto px-4">
               {language === 'zh' 
                 ? '为了巩固你所学的知识，我将为你准备一个实战挑战。完成挑战后，你将获得 IRYS 测试币奖励！请选择你想要挑战的任务：'
                 : 'To consolidate what you\'ve learned, I\'ve prepared a practical challenge for you. Complete it to earn IRYS test tokens! Choose your challenge:'}
@@ -302,14 +302,14 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
           </div>
 
           {/* 选择框 A 和 B / Options A and B */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto px-4 md:px-0">
             {/* 选项 A：上传文件 / Option A: File Upload */}
             <motion.button
               whileHover={selectedChallenge === null || selectedChallenge === 'file' ? { scale: 1.02, y: -4 } : {}}
               whileTap={selectedChallenge === null || selectedChallenge === 'file' ? { scale: 0.98 } : {}}
               onClick={() => selectedChallenge === null && handleChallengeSelect('file')}
               disabled={selectedChallenge !== null && selectedChallenge !== 'file'}
-              className={`relative p-6 border-2 rounded-xl transition-all duration-300 text-left ${
+              className={`relative p-4 md:p-6 border-2 rounded-xl transition-all duration-300 text-left ${
                 acceptedChallenge === 'file'
                   ? 'border-green-500 bg-green-500/10 shadow-[0_0_30px_rgba(34,197,94,0.5)]'
                   : selectedChallenge === 'file'
@@ -331,21 +331,21 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
                 </div>
               )}
               
-              <div className="flex items-start gap-4">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
                   acceptedChallenge === 'file'
                     ? 'bg-gradient-to-br from-green-500 to-emerald-600'
                     : 'bg-gradient-to-br from-blue-500 to-cyan-600'
                 }`}>
                   {acceptedChallenge === 'file' ? (
-                    <CheckCircledIcon className="w-8 h-8 text-white" />
+                    <CheckCircledIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   ) : (
-                    <FileTextIcon className="w-8 h-8 text-white" />
+                    <FileTextIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   )}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-xl font-bold text-dark-text-primary">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <h4 className="text-lg md:text-xl font-bold text-dark-text-primary">
                       {t.common.challengeA}
                     </h4>
                     {acceptedChallenge === 'file' ? (
@@ -359,15 +359,15 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
                       </span>
                     )}
                   </div>
-                  <p className="text-dark-text-secondary mb-3">
+                  <p className="text-dark-text-secondary mb-2 md:mb-3 text-sm md:text-base">
                     {language === 'zh' 
                       ? '上传一个文本文件（.txt、.json、.md 等）到 Irys 网络'
                       : 'Upload a text file (.txt, .json, .md, etc.) to the Irys network'}
                   </p>
-                  <div className={`flex items-center gap-2 text-sm ${
+                  <div className={`flex items-center gap-2 text-xs md:text-sm ${
                     acceptedChallenge === 'file' ? 'text-green-400' : 'text-accent-primary'
                   }`}>
-                    <StarIcon className="w-4 h-4" />
+                    <StarIcon className="w-3 h-3 md:w-4 md:h-4" />
                     <span>{t.common.rewardExclusiveNFT}</span>
                   </div>
                 </div>
@@ -380,7 +380,7 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
               whileTap={selectedChallenge === null || selectedChallenge === 'image' ? { scale: 0.98 } : {}}
               onClick={() => selectedChallenge === null && handleChallengeSelect('image')}
               disabled={selectedChallenge !== null && selectedChallenge !== 'image'}
-              className={`relative p-6 border-2 rounded-xl transition-all duration-300 text-left ${
+              className={`relative p-4 md:p-6 border-2 rounded-xl transition-all duration-300 text-left ${
                 acceptedChallenge === 'image'
                   ? 'border-green-500 bg-green-500/10 shadow-[0_0_30px_rgba(34,197,94,0.5)]'
                   : selectedChallenge === 'image'
@@ -402,21 +402,21 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
                 </div>
               )}
               
-              <div className="flex items-start gap-4">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
                   acceptedChallenge === 'image'
                     ? 'bg-gradient-to-br from-green-500 to-emerald-600'
                     : 'bg-gradient-to-br from-purple-500 to-pink-600'
                 }`}>
                   {acceptedChallenge === 'image' ? (
-                    <CheckCircledIcon className="w-8 h-8 text-white" />
+                    <CheckCircledIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   ) : (
-                    <ImageIcon className="w-8 h-8 text-white" />
+                    <ImageIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   )}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-xl font-bold text-dark-text-primary">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <h4 className="text-lg md:text-xl font-bold text-dark-text-primary">
                       {t.common.challengeB}
                     </h4>
                     {acceptedChallenge === 'image' ? (
@@ -430,15 +430,15 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
                       </span>
                     )}
                   </div>
-                  <p className="text-dark-text-secondary mb-3">
+                  <p className="text-dark-text-secondary mb-2 md:mb-3 text-sm md:text-base">
                     {language === 'zh' 
                       ? '上传一张图片（.jpg、.png、.gif 等）到 Irys 网络'
                       : 'Upload an image (.jpg, .png, .gif, etc.) to the Irys network'}
                   </p>
-                  <div className={`flex items-center gap-2 text-sm ${
+                  <div className={`flex items-center gap-2 text-xs md:text-sm ${
                     acceptedChallenge === 'image' ? 'text-green-400' : 'text-purple-400'
                   }`}>
-                    <StarIcon className="w-4 h-4" />
+                    <StarIcon className="w-3 h-3 md:w-4 md:h-4" />
                     <span>{t.common.rewardExclusiveNFT}</span>
                   </div>
                 </div>
@@ -449,7 +449,7 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
           {/* 接受挑战按钮 / Accept Challenge Button */}
           {selectedChallenge && !acceptedChallenge && (
             <motion.div 
-              className="mt-8 flex flex-col items-center gap-4"
+              className="mt-6 md:mt-8 flex flex-col items-center gap-3 md:gap-4 px-4 md:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -457,19 +457,20 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="w-full md:w-auto"
               >
                 <Button
                   onClick={handleConfirm}
-                  className="px-10 py-5 text-xl font-bold bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:shadow-2xl hover:shadow-orange-500/50 flex items-center gap-3"
+                  className="w-full md:w-auto px-6 md:px-10 py-4 md:py-5 text-base md:text-xl font-bold bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:shadow-2xl hover:shadow-orange-500/50 flex items-center justify-center gap-2 md:gap-3"
                 >
-                  <RocketIcon className="w-6 h-6" />
+                  <RocketIcon className="w-5 h-5 md:w-6 md:h-6" />
                   {language === 'zh' ? '接受挑战' : 'Accept Challenge'}
-                  <LightningBoltIcon className="w-6 h-6" />
+                  <LightningBoltIcon className="w-5 h-5 md:w-6 md:h-6" />
                 </Button>
               </motion.div>
               
-              <p className="text-sm text-dark-text-secondary flex items-center justify-center gap-2">
-                <StarIcon className="w-4 h-4 text-yellow-400" />
+              <p className="text-xs md:text-sm text-dark-text-secondary flex items-center justify-center gap-2 text-center px-4">
+                <StarIcon className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 flex-shrink-0" />
                 <span>
                   {language === 'zh' 
                     ? '点击按钮开始你的挑战之旅！'
@@ -482,15 +483,15 @@ export default function Chapter5({ onNext, onPrevious, isLast }: ChapterProps) {
       </div>
 
       {/* 底部导航 / Bottom Navigation */}
-      <div className="flex justify-between pt-8 border-t border-dark-border">
-        <Button variant="ghost" onClick={onPrevious}>
+      <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 pt-6 md:pt-8 border-t border-dark-border px-4 md:px-0">
+        <Button variant="ghost" onClick={onPrevious} className="w-full sm:w-auto text-sm md:text-base">
           ← {t.previous}
         </Button>
         {!isLast && (
           <Button 
             onClick={handleConfirm}
             disabled={!selectedChallenge}
-            className={!selectedChallenge ? 'opacity-50 cursor-not-allowed' : ''}
+            className={`w-full sm:w-auto text-sm md:text-base ${!selectedChallenge ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {t.next} →
           </Button>
