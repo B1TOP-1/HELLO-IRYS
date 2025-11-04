@@ -122,7 +122,7 @@ export default function MacTerminalCodeBlock({
     >
       {/* Mac 终端标题栏 */}
       <div 
-        className="px-4 py-3 flex items-center gap-2"
+        className="px-2 sm:px-4 py-2 sm:py-3 flex items-center gap-1 sm:gap-2"
         style={{
           background: '#323232',
           borderBottom: '1px solid #1a1a1a',
@@ -153,27 +153,26 @@ export default function MacTerminalCodeBlock({
           />
         </div>
         {/* 文件名 */}
-        <div className="flex-1 text-center">
+        <div className="flex-1 text-center min-w-0">
           <span 
-            className="text-sm font-medium"
+            className="text-[10px] sm:text-xs md:text-sm font-medium truncate block"
             style={{ color: '#8b8b8b' }}
           >
             {title}
           </span>
         </div>
         {/* 占位保持居中 */}
-        <div className="w-[52px]" />
+        <div className="w-[40px] sm:w-[52px] flex-shrink-0" />
       </div>
 
       {/* 隐藏的测量元素 - 用于获取完整代码的高度 */}
       {animated && (
         <div 
           ref={measureRef}
+          className="absolute invisible pointer-events-none w-full"
           style={{
-            position: 'absolute',
-            visibility: 'hidden',
-            pointerEvents: 'none',
-            width: '100%',
+            fontSize: '0.75rem',
+            padding: '1rem',
           }}
         >
           <SyntaxHighlighter
@@ -181,9 +180,9 @@ export default function MacTerminalCodeBlock({
             style={atomOneDark}
             customStyle={{
               margin: 0,
-              padding: '1.5rem',
+              padding: '1rem',
               background: 'transparent',
-              fontSize: '0.9rem',
+              fontSize: '0.75rem',
               lineHeight: '1.6',
             }}
             showLineNumbers={false}
@@ -198,19 +197,19 @@ export default function MacTerminalCodeBlock({
         className="overflow-x-auto relative"
         style={{
           background: '#1e1e1e',
-          minHeight: animated && codeHeight ? `${codeHeight}px` : '200px',
+          minHeight: animated && codeHeight ? `${codeHeight}px` : '150px',
           height: animated && codeHeight ? `${codeHeight}px` : 'auto',
         }}
       >
-        <div className="relative">
+        <div className="relative code-block-mobile">
           <SyntaxHighlighter
             language={language}
             style={atomOneDark}
             customStyle={{
               margin: 0,
-              padding: '1.5rem',
+              padding: '0.75rem',
               background: 'transparent',
-              fontSize: '0.9rem',
+              fontSize: '0.65rem',
               lineHeight: '1.6',
             }}
             codeTagProps={{
@@ -243,16 +242,24 @@ export default function MacTerminalCodeBlock({
   )
 }
 
-// 添加光标闪烁的 CSS 动画
-const style = document.createElement('style')
-style.textContent = `
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+// 添加光标闪烁的 CSS 动画和移动端样式
+if (typeof document !== 'undefined') {
+  if (!document.querySelector('style[data-cursor-blink]')) {
+    const style = document.createElement('style')
+    style.setAttribute('data-cursor-blink', 'true')
+    style.textContent = `
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      @media (min-width: 640px) {
+        .code-block-mobile pre {
+          padding: 1rem !important;
+          font-size: 0.75rem !important;
+        }
+      }
+    `
+    document.head.appendChild(style)
   }
-`
-if (typeof document !== 'undefined' && !document.querySelector('style[data-cursor-blink]')) {
-  style.setAttribute('data-cursor-blink', 'true')
-  document.head.appendChild(style)
 }
 

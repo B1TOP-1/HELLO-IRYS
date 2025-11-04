@@ -80,7 +80,7 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
     >
       {/* 标题 / Title */}
       <div className="text-center">
-        <h2 className="text-2xl md:text-4xl font-bold gradient-text mb-4 px-4">
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold gradient-text mb-3 md:mb-4 px-4">
           {t.common.acceptChallengeFullTitle}
         </h2>
       </div>
@@ -116,17 +116,17 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
                 </div>
               </div>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold gradient-text mb-2 md:mb-3 px-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text mb-2 md:mb-3 px-4">
               {t.common.nftRewardTitle}
             </h3>
-            <p className="text-sm md:text-lg text-dark-text-secondary max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-base md:text-lg text-dark-text-secondary max-w-2xl mx-auto px-4">
               {t.common.nftRewardDesc}
             </p>
           </div>
 
           {/* NFT 预览图片 / NFT Preview Image */}
-          <div className="flex justify-center mb-6 md:mb-8 px-4">
-            <div className="relative group w-full max-w-[288px]">
+          <div className="flex justify-center mb-4 sm:mb-6 md:mb-8 px-4">
+            <div className="relative group w-full max-w-[240px] sm:max-w-[288px]">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
               <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-2 md:p-3 shadow-2xl">
                 <img
@@ -291,10 +291,10 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
                 </div>
               </div>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-dark-text-primary mb-2 md:mb-3 px-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-dark-text-primary mb-2 md:mb-3 px-4">
               {t.common.readyForChallenge}
             </h3>
-            <p className="text-sm md:text-lg text-dark-text-secondary max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-base md:text-lg text-dark-text-secondary max-w-2xl mx-auto px-4">
               {language === 'zh' 
                 ? '为了巩固你所学的知识，我将为你准备一个实战挑战。完成挑战后，你将获得 IRYS 测试币奖励！请选择你想要挑战的任务：'
                 : 'To consolidate what you\'ve learned, I\'ve prepared a practical challenge for you. Complete it to earn IRYS test tokens! Choose your challenge:'}
@@ -302,14 +302,14 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
           </div>
 
           {/* 选择框 A 和 B / Options A and B */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto px-4 md:px-0">
+          <div className="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto px-2 sm:px-4 md:px-0">
             {/* 选项 A：上传文件 / Option A: File Upload */}
             <motion.button
               whileHover={selectedChallenge === null || selectedChallenge === 'file' ? { scale: 1.02, y: -4 } : {}}
               whileTap={selectedChallenge === null || selectedChallenge === 'file' ? { scale: 0.98 } : {}}
               onClick={() => selectedChallenge === null && handleChallengeSelect('file')}
               disabled={selectedChallenge !== null && selectedChallenge !== 'file'}
-              className={`relative p-4 md:p-6 border-2 rounded-xl transition-all duration-300 text-left ${
+              className={`relative p-3 sm:p-4 md:p-6 border-2 rounded-xl transition-all duration-300 text-left ${
                 acceptedChallenge === 'file'
                   ? 'border-green-500 bg-green-500/10 shadow-[0_0_30px_rgba(34,197,94,0.5)]'
                   : selectedChallenge === 'file'
@@ -331,21 +331,21 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
                 </div>
               )}
               
-              <div className="flex items-start gap-3 md:gap-4">
-                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
                   acceptedChallenge === 'file'
                     ? 'bg-gradient-to-br from-green-500 to-emerald-600'
                     : 'bg-gradient-to-br from-blue-500 to-cyan-600'
                 }`}>
                   {acceptedChallenge === 'file' ? (
-                    <CheckCircledIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                    <CheckCircledIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                   ) : (
-                    <FileTextIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                    <FileTextIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <h4 className="text-lg md:text-xl font-bold text-dark-text-primary">
+                    <h4 className="text-base sm:text-lg md:text-xl font-bold text-dark-text-primary">
                       {t.common.challengeA}
                     </h4>
                     {acceptedChallenge === 'file' ? (
@@ -359,7 +359,7 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
                       </span>
                     )}
                   </div>
-                  <p className="text-dark-text-secondary mb-2 md:mb-3 text-sm md:text-base">
+                  <p className="text-dark-text-secondary mb-2 md:mb-3 text-xs sm:text-sm md:text-base leading-relaxed">
                     {language === 'zh' 
                       ? '上传一个文本文件（.txt、.json、.md 等）到 Irys 网络'
                       : 'Upload a text file (.txt, .json, .md, etc.) to the Irys network'}
@@ -380,7 +380,7 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
               whileTap={selectedChallenge === null || selectedChallenge === 'image' ? { scale: 0.98 } : {}}
               onClick={() => selectedChallenge === null && handleChallengeSelect('image')}
               disabled={selectedChallenge !== null && selectedChallenge !== 'image'}
-              className={`relative p-4 md:p-6 border-2 rounded-xl transition-all duration-300 text-left ${
+              className={`relative p-3 sm:p-4 md:p-6 border-2 rounded-xl transition-all duration-300 text-left ${
                 acceptedChallenge === 'image'
                   ? 'border-green-500 bg-green-500/10 shadow-[0_0_30px_rgba(34,197,94,0.5)]'
                   : selectedChallenge === 'image'
@@ -402,21 +402,21 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
                 </div>
               )}
               
-              <div className="flex items-start gap-3 md:gap-4">
-                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg ${
                   acceptedChallenge === 'image'
                     ? 'bg-gradient-to-br from-green-500 to-emerald-600'
                     : 'bg-gradient-to-br from-purple-500 to-pink-600'
                 }`}>
                   {acceptedChallenge === 'image' ? (
-                    <CheckCircledIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                    <CheckCircledIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                   ) : (
-                    <ImageIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                    <ImageIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <h4 className="text-lg md:text-xl font-bold text-dark-text-primary">
+                    <h4 className="text-base sm:text-lg md:text-xl font-bold text-dark-text-primary">
                       {t.common.challengeB}
                     </h4>
                     {acceptedChallenge === 'image' ? (
@@ -430,7 +430,7 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
                       </span>
                     )}
                   </div>
-                  <p className="text-dark-text-secondary mb-2 md:mb-3 text-sm md:text-base">
+                  <p className="text-dark-text-secondary mb-2 md:mb-3 text-xs sm:text-sm md:text-base leading-relaxed">
                     {language === 'zh' 
                       ? '上传一张图片（.jpg、.png、.gif 等）到 Irys 网络'
                       : 'Upload an image (.jpg, .png, .gif, etc.) to the Irys network'}
@@ -483,7 +483,7 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
       </div>
 
       {/* 底部导航 / Bottom Navigation */}
-      <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 pt-6 md:pt-8 border-t border-dark-border px-4 md:px-0">
+      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4 pt-6 md:pt-8 border-t border-dark-border px-4 md:px-0">
         <Button variant="ghost" onClick={onPrevious} className="w-full sm:w-auto text-sm md:text-base">
           ← {t.previous}
         </Button>

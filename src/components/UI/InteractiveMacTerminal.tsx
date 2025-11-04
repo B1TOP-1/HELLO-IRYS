@@ -26,6 +26,7 @@ export default function InteractiveMacTerminal({
   const [currentInput, setCurrentInput] = useState('')
   const [commandHistory, setCommandHistory] = useState<string[]>([])
   const [historyIndex, setHistoryIndex] = useState(-1)
+  const [isFocused, setIsFocused] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
   const lineIdCounter = useRef(0)
@@ -47,6 +48,13 @@ export default function InteractiveMacTerminal({
       setLines([createInputLine()])
     }
   }, [initialCommands])
+
+  // 检查输入框是否已获得焦点（由于 autoFocus）
+  useEffect(() => {
+    if (inputRef.current && document.activeElement === inputRef.current) {
+      setIsFocused(true)
+    }
+  }, [lines])
 
   const createInputLine = (): CommandLine => ({
     id: lineIdCounter.current++,
@@ -203,7 +211,7 @@ export default function InteractiveMacTerminal({
     >
       {/* Mac 终端标题栏 */}
       <div 
-        className="px-4 py-3 flex items-center gap-2"
+        className="px-2 sm:px-4 py-2 sm:py-3 flex items-center gap-1 sm:gap-2"
         style={{
           background: '#323232',
           borderBottom: '1px solid #1a1a1a',
@@ -234,60 +242,80 @@ export default function InteractiveMacTerminal({
           />
         </div>
         {/* 标题 */}
-        <div className="flex-1 text-center">
+        <div className="flex-1 text-center min-w-0">
           <span 
-            className="text-sm font-medium"
+            className="text-[10px] sm:text-xs md:text-sm font-medium truncate block"
             style={{ color: '#8b8b8b' }}
           >
             {title}
           </span>
         </div>
         {/* 占位保持居中 */}
-        <div className="w-[52px]" />
+        <div className="w-[40px] sm:w-[52px] flex-shrink-0" />
       </div>
 
       {/* 终端内容区域 */}
       <div 
         ref={terminalRef}
         onClick={handleTerminalClick}
-        className="overflow-y-auto overflow-x-hidden cursor-text"
+        className="overflow-y-auto overflow-x-auto cursor-text p-2 sm:p-3 text-[0.65rem] sm:text-[0.75rem]"
         style={{
           background: '#1e1e1e',
-          minHeight: '300px',
-          maxHeight: '500px',
-          padding: '1rem',
+          minHeight: '250px',
+          maxHeight: '400px',
           fontFamily: "'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Consolas', monospace",
-          fontSize: '0.875rem',
           lineHeight: '1.6',
         }}
       >
         {lines.map((line) => (
           <div key={line.id} className="mb-1">
             {/* 命令行提示符和命令 */}
-            <div className="flex items-start">
-              <span style={{ color: '#22c55e', whiteSpace: 'nowrap' }}>
+            <div className="flex items-start flex-wrap sm:flex-nowrap">
+              <span className="flex-shrink-0" style={{ color: '#22c55e', whiteSpace: 'nowrap' }}>
                 {line.prompt}
               </span>
-              <span className="ml-2" style={{ color: '#e5e7eb', wordBreak: 'break-word' }}>
+              <span className="ml-1 sm:ml-2 flex-1 min-w-0" style={{ color: '#e5e7eb', wordBreak: 'break-word' }}>
                 {line.isInput ? (
-                  <div className="flex items-center">
+                  <div className="flex items-center relative">
                     <input
                       ref={inputRef}
                       type="text"
                       value={currentInput}
                       onChange={(e) => setCurrentInput(e.target.value)}
                       onKeyDown={handleKeyDown}
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => setIsFocused(false)}
                       className="outline-none bg-transparent flex-1"
                       style={{ 
                         color: '#e5e7eb',
                         caretColor: '#22c55e',
                         width: '100%',
-                        border: 'none'
+                        border: 'none',
+                        minWidth: '1px'
                       }}
-                      autoFocus
                       spellCheck={false}
                       autoComplete="off"
                     />
+                    {/* 闪烁的光标指示器 - 只在未获得焦点且输入为空时显示 */}
+                    {currentInput === '' && !isFocused && (
+                      <motion.span
+                        animate={{ opacity: [1, 0, 1] }}
+                        transition={{ 
+                          duration: 1, 
+                          repeat: Infinity,
+                          ease: 'easeInOut'
+                        }}
+                        style={{ 
+                          position: 'absolute',
+                          left: '0',
+                          display: 'inline-block',
+                          width: '2px',
+                          height: '1em',
+                          background: '#22c55e',
+                          verticalAlign: 'middle'
+                        }}
+                      />
+                    )}
                   </div>
                 ) : (
                   line.command
@@ -299,9 +327,9 @@ export default function InteractiveMacTerminal({
             {line.output.map((outputLine, idx) => (
               <div 
                 key={idx} 
+                className="break-words overflow-wrap-anywhere pl-1 sm:pl-2"
                 style={{ 
                   color: outputLine.includes('command not found') ? '#ef4444' : '#9ca3af',
-                  paddingLeft: '0.5rem',
                   wordBreak: 'break-word'
                 }}
               >

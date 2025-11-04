@@ -29,12 +29,12 @@ export default function MyNFTs() {
 
   if (!isConnected) {
     return (
-      <div className="p-8 bg-dark-surface border border-dark-border rounded-xl shadow-xl text-center">
-        <InfoCircledIcon className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-dark-text-primary mb-2">
+      <div className="p-6 sm:p-8 bg-dark-surface border border-dark-border rounded-xl shadow-xl text-center">
+        <InfoCircledIcon className="w-12 h-12 sm:w-16 sm:h-16 text-yellow-400 mx-auto mb-3 sm:mb-4" />
+        <h3 className="text-xl sm:text-2xl font-bold text-dark-text-primary mb-2">
           {language === 'zh' ? '请连接钱包' : 'Please Connect Wallet'}
         </h3>
-        <p className="text-dark-text-secondary">
+        <p className="text-dark-text-secondary text-sm sm:text-base px-4">
           {language === 'zh' 
             ? '连接钱包后即可查看你拥有的 NFT'
             : 'Connect your wallet to view your NFTs'}
@@ -45,12 +45,12 @@ export default function MyNFTs() {
 
   if (!isCorrectNetwork) {
     return (
-      <div className="p-8 bg-red-500/10 border border-red-500/30 rounded-xl shadow-xl text-center">
-        <CrossCircledIcon className="w-16 h-16 text-red-400 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-red-400 mb-2">
+      <div className="p-6 sm:p-8 bg-red-500/10 border border-red-500/30 rounded-xl shadow-xl text-center">
+        <CrossCircledIcon className="w-12 h-12 sm:w-16 sm:h-16 text-red-400 mx-auto mb-3 sm:mb-4" />
+        <h3 className="text-xl sm:text-2xl font-bold text-red-400 mb-2">
           {language === 'zh' ? '网络错误' : 'Wrong Network'}
         </h3>
-        <p className="text-dark-text-secondary">
+        <p className="text-dark-text-secondary text-sm sm:text-base px-4">
           {language === 'zh' 
             ? '请切换到 Irys 测试网络'
             : 'Please switch to Irys Testnet'}
@@ -67,11 +67,11 @@ export default function MyNFTs() {
       className="space-y-6"
     >
       {/* 标题 / Title */}
-      <div className="text-center">
-        <h2 className="text-4xl font-bold gradient-text mb-4">
+      <div className="text-center px-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-3 md:mb-4">
           {language === 'zh' ? '我的 NFT 收藏' : 'My NFT Collection'}
         </h2>
-        <p className="text-dark-text-secondary">
+        <p className="text-dark-text-secondary text-sm sm:text-base">
           {language === 'zh' 
             ? '查看你在 Irys 上铸造的所有 NFT'
             : 'View all your minted NFTs on Irys'}
@@ -79,18 +79,18 @@ export default function MyNFTs() {
       </div>
 
       {/* NFT 卡片 / NFT Card */}
-      <div className="p-8 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-orange-500/10 border border-purple-500/30 rounded-xl shadow-2xl">
+      <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-orange-500/10 border border-purple-500/30 rounded-xl shadow-2xl">
         {/* NFT 图片 / NFT Image */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-4 sm:mb-6">
           <div className="relative group">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-            <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-3 shadow-2xl">
+            <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-2 sm:p-3 shadow-2xl">
               <img
                 src="https://file.notion.so/f/f/805c8ee6-d632-43a5-bb85-5b1e2e4a9000/a9d1ae37-80d6-4360-8a8d-fc65e52102b5/Discord_PFP_Teal.gif?table=block&id=189e9455-e498-8035-b188-f1ff4c0fb8c9&spaceId=805c8ee6-d632-43a5-bb85-5b1e2e4a9000&expirationTimestamp=1762192800000&signature=E63oVInCyM-SIZzkebT0qJBn7b4YA4ILYcFQ4c6hoRU"
                 alt="HELLO IRYS NFT"
-                className="w-80 h-80 object-cover rounded-xl shadow-lg"
+                className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover rounded-xl shadow-lg"
               />
-              <div className="absolute -top-2 -right-2 bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+              <div className="absolute -top-2 -right-2 bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
                 NFT
               </div>
             </div>
@@ -98,30 +98,30 @@ export default function MyNFTs() {
         </div>
 
         {/* 快速统计 / Quick Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-dark-surface/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-4 text-center">
-            <p className="text-dark-text-secondary text-sm mb-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6">
+          <div className="bg-dark-surface/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-3 sm:p-4 text-center">
+            <p className="text-dark-text-secondary text-xs sm:text-sm mb-1">
               {language === 'zh' ? '已拥有' : 'Owned'}
             </p>
-            <p className="text-3xl font-bold text-purple-400">{mintedCount}</p>
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-purple-400">{mintedCount}</p>
           </div>
-          <div className="bg-dark-surface/80 backdrop-blur-sm border border-green-500/30 rounded-lg p-4 text-center">
-            <p className="text-dark-text-secondary text-sm mb-1">
+          <div className="bg-dark-surface/80 backdrop-blur-sm border border-green-500/30 rounded-lg p-3 sm:p-4 text-center">
+            <p className="text-dark-text-secondary text-xs sm:text-sm mb-1">
               {language === 'zh' ? '可铸造' : 'Available'}
             </p>
-            <p className="text-3xl font-bold text-green-400">{remainingMints}</p>
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-green-400">{remainingMints}</p>
           </div>
-          <div className="bg-dark-surface/80 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 text-center">
-            <p className="text-dark-text-secondary text-sm mb-1">
+          <div className="bg-dark-surface/80 backdrop-blur-sm border border-blue-500/30 rounded-lg p-3 sm:p-4 text-center">
+            <p className="text-dark-text-secondary text-xs sm:text-sm mb-1">
               {t.common.totalSupplyLabel}
             </p>
-            <p className="text-3xl font-bold text-blue-400">{totalSupply}</p>
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-400">{totalSupply}</p>
           </div>
-          <div className="bg-dark-surface/80 backdrop-blur-sm border border-orange-500/30 rounded-lg p-4 text-center">
-            <p className="text-dark-text-secondary text-sm mb-1">
+          <div className="bg-dark-surface/80 backdrop-blur-sm border border-orange-500/30 rounded-lg p-3 sm:p-4 text-center">
+            <p className="text-dark-text-secondary text-xs sm:text-sm mb-1">
               {language === 'zh' ? '剩余' : 'Remaining'}
             </p>
-            <p className="text-3xl font-bold text-orange-400">{remainingSupply}</p>
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-400">{remainingSupply}</p>
           </div>
         </div>
 
@@ -148,13 +148,13 @@ export default function MyNFTs() {
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
-            <div className="bg-dark-surface/80 backdrop-blur-sm border border-dark-border rounded-xl p-6">
-              <h4 className="text-xl font-semibold text-dark-text-primary mb-4 flex items-center gap-2">
-                <StarIcon className="w-5 h-5 text-yellow-400" />
+            <div className="bg-dark-surface/80 backdrop-blur-sm border border-dark-border rounded-xl p-4 sm:p-6">
+              <h4 className="text-lg sm:text-xl font-semibold text-dark-text-primary mb-3 sm:mb-4 flex items-center gap-2">
+                <StarIcon className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
                 {t.common.nftDetails}
               </h4>
               
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-2 sm:gap-4">
                 <div className="flex justify-between items-center p-3 bg-dark-hover rounded-lg">
                   <span className="text-dark-text-secondary">{t.common.nftName}</span>
                   <span className="text-dark-text-primary font-semibold">HELLO IRYS NFT</span>
@@ -222,8 +222,8 @@ export default function MyNFTs() {
       </div>
 
       {/* 铸造进度 / Minting Progress */}
-      <div className="p-6 bg-dark-surface border border-dark-border rounded-xl">
-        <h3 className="text-xl font-semibold text-dark-text-primary mb-4">
+      <div className="p-4 sm:p-6 bg-dark-surface border border-dark-border rounded-xl">
+        <h3 className="text-lg sm:text-xl font-semibold text-dark-text-primary mb-3 sm:mb-4">
           {language === 'zh' ? '铸造进度' : 'Minting Progress'}
         </h3>
         <div className="space-y-3">

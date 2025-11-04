@@ -6,6 +6,14 @@ export const translations = {
     footer: '使用 Irys 实现永久数据存储',
     copyright: '© 2025 Hello Irys Tutorial',
     
+    // 欢迎页面
+    welcome: {
+      title: 'HELLO IRYS',
+      subtitle: '学习使用 Irys 完成首个数据上传',
+      startButton: '开始学习',
+      hint: '点击按钮开始你的 Irys 学习之旅',
+    },
+    
     // 导航
     chapters: {
       1: '第一步：了解 Irys',
@@ -293,6 +301,14 @@ export const translations = {
     subtitle: 'Permanent Data Storage Tutorial',
     footer: 'Build with Irys for Permanent Data',
     copyright: '© 2024 Hello Irys Tutorial',
+    
+    // Welcome Page
+    welcome: {
+      title: 'HELLO IRYS',
+      subtitle: 'Learn to use Irys to complete your first data upload',
+      startButton: 'Start Learning',
+      hint: 'Click the button to begin your Irys learning journey',
+    },
     
     // Navigation
     chapters: {

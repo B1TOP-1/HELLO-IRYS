@@ -16,7 +16,7 @@ export default function Button({
   disabled = false,
   className = '',
 }: ButtonProps) {
-  const baseClasses = 'px-8 py-3 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group'
+  const baseClasses = 'px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group text-sm sm:text-base'
   
   const variantClasses = {
     primary: 'bg-gradient-to-r from-accent-primary to-accent-primary hover:from-accent-primary hover:to-accent-secondary text-white shadow-lg shadow-accent-primary/30 hover:shadow-xl hover:shadow-accent-primary/40',

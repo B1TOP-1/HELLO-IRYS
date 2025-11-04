@@ -168,25 +168,25 @@ export const ChallengeModal: React.FC<ChallengeModalProps> = ({
           />
 
           {/* 弹窗内容 / Modal Content */}
-          <div className="fixed inset-0 flex items-center justify-center z-50 p-4 pointer-events-none">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-2 sm:p-4 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              className="bg-dark-surface border-2 border-accent-primary rounded-2xl shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden pointer-events-auto"
+              className="bg-dark-surface border-2 border-accent-primary rounded-2xl shadow-2xl max-w-3xl w-full mx-2 sm:mx-4 max-h-[90vh] overflow-hidden pointer-events-auto"
             >
               {/* 头部 / Header */}
-              <div className="bg-gradient-to-r from-accent-primary/20 to-accent-secondary/20 border-b border-dark-border px-6 py-5 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-xl flex items-center justify-center shadow-lg">
-                    <RocketIcon className="w-6 h-6 text-white" />
+              <div className="bg-gradient-to-r from-accent-primary/20 to-accent-secondary/20 border-b border-dark-border px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                    <RocketIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-dark-text-primary">
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-dark-text-primary truncate">
                       {language === 'zh' ? '挑战任务详情' : 'Challenge Details'}
                     </h2>
-                    <p className="text-sm text-dark-text-secondary">
+                    <p className="text-xs sm:text-sm text-dark-text-secondary truncate">
                       {challengeType === 'file' 
                         ? (language === 'zh' ? '挑战 A：文件上传' : 'Challenge A: File Upload')
                         : (language === 'zh' ? '挑战 B：图片上传' : 'Challenge B: Image Upload')}
@@ -195,36 +195,36 @@ export const ChallengeModal: React.FC<ChallengeModalProps> = ({
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-10 h-10 rounded-lg hover:bg-dark-hover transition-colors flex items-center justify-center"
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg hover:bg-dark-hover transition-colors flex items-center justify-center flex-shrink-0"
                 >
-                  <Cross2Icon className="w-5 h-5 text-dark-text-secondary" />
+                  <Cross2Icon className="w-4 h-4 sm:w-5 sm:h-5 text-dark-text-secondary" />
                 </button>
               </div>
 
               {/* 内容区域 / Content */}
-              <div className="p-6 overflow-y-auto max-h-[calc(85vh-180px)]">
-                <div className="space-y-6">
+              <div className="p-3 sm:p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-180px)] sm:max-h-[calc(90vh-200px)]">
+                <div className="space-y-4 sm:space-y-6">
                   {tasks.map((section, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="relative space-y-3"
+                      className="relative space-y-2 sm:space-y-3"
                     >
-                      <h3 className="text-lg font-bold text-dark-text-primary flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-accent-primary/20">
-                          <span className="font-bold text-accent-primary">
+                      <h3 className="text-base sm:text-lg font-bold text-dark-text-primary flex items-center gap-2">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-accent-primary/20 flex-shrink-0">
+                          <span className="font-bold text-accent-primary text-sm sm:text-base">
                             {index + 1}
                           </span>
                         </div>
-                        {section.title}
+                        <span className="break-words">{section.title}</span>
                       </h3>
-                      <ul className="space-y-2 ml-10">
+                      <ul className="space-y-2 ml-8 sm:ml-10">
                         {section.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start gap-3 text-dark-text-secondary">
-                            <CheckIcon className="w-5 h-5 mt-0.5 flex-shrink-0 text-green-400" />
-                            <span className={itemIndex === section.items.length - 1 ? 'font-semibold text-accent-primary' : ''}>
+                          <li key={itemIndex} className="flex items-start gap-2 sm:gap-3 text-dark-text-secondary">
+                            <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0 text-green-400" />
+                            <span className={`text-sm sm:text-base break-words ${itemIndex === section.items.length - 1 ? 'font-semibold text-accent-primary' : ''}`}>
                               {item}
                             </span>
                           </li>
@@ -240,24 +240,24 @@ export const ChallengeModal: React.FC<ChallengeModalProps> = ({
                     transition={{ delay: 0.3 }}
                     className="relative mt-6"
                   >
-                    <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-blue-500/20">
-                          <span className="font-bold text-blue-400">
+                    <div className="p-3 sm:p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl">
+                      <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-blue-500/20 flex-shrink-0">
+                          <span className="font-bold text-blue-400 text-sm sm:text-base">
                             4
                           </span>
                         </div>
-                        <TwitterLogoIcon className="w-5 h-5 text-blue-400" />
-                        <h4 className="font-semibold text-dark-text-primary">
+                        <TwitterLogoIcon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+                        <h4 className="font-semibold text-dark-text-primary text-sm sm:text-base">
                           {language === 'zh' ? '推文模板' : 'Tweet Template'}
                         </h4>
                       </div>
-                      <p className="text-sm text-dark-text-secondary mb-3 whitespace-pre-wrap font-mono bg-dark-card p-3 rounded-lg border border-dark-border">
+                      <p className="text-[10px] sm:text-xs md:text-sm text-dark-text-secondary mb-2 sm:mb-3 whitespace-pre-wrap font-mono bg-dark-card p-2 sm:p-3 rounded-lg border border-dark-border overflow-x-auto break-words">
                         {tweetTemplate}
                       </p>
                       <Button
                         onClick={handleTweetClick}
-                        className="w-full bg-blue-500 hover:bg-blue-600"
+                        className="w-full bg-blue-500 hover:bg-blue-600 text-sm sm:text-base"
                       >
                         <TwitterLogoIcon className="w-4 h-4" />
                         {language === 'zh' ? '在 Twitter 上分享' : 'Share on Twitter'}
@@ -269,11 +269,12 @@ export const ChallengeModal: React.FC<ChallengeModalProps> = ({
               </div>
 
               {/* 底部按钮 / Footer */}
-              <div className="border-t border-dark-border px-6 py-4 bg-dark-card">
-                <div className="flex gap-3 justify-end">
+              <div className="border-t border-dark-border px-4 sm:px-6 py-3 sm:py-4 bg-dark-card">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-end">
                   <Button
                     onClick={onClose}
                     variant="outline"
+                    className="w-full sm:w-auto"
                   >
                     {language === 'zh' ? '关闭' : 'Close'}
                   </Button>
@@ -282,7 +283,7 @@ export const ChallengeModal: React.FC<ChallengeModalProps> = ({
                       onAccept?.();
                       onClose();
                     }}
-                    className="bg-gradient-to-r from-accent-primary to-accent-secondary"
+                    className="w-full sm:w-auto bg-gradient-to-r from-accent-primary to-accent-secondary"
                   >
                     {language === 'zh' ? '开始挑战' : 'Start Challenge'}
                   </Button>

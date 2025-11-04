@@ -54,17 +54,17 @@ export default function Sidebar({
   return (
     <aside className="h-screen bg-dark-surface border-r border-dark-border flex flex-col overflow-hidden">
       {/* Logo/标题区域 */}
-      <div className="p-8 border-b border-dark-border flex-shrink-0">
+      <div className="p-4 sm:p-6 md:p-8 border-b border-dark-border flex-shrink-0">
         <div className="flex items-center justify-between mb-2">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-bold gradient-text"
+            className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text"
           >
             {t.title}
           </motion.h1>
         </div>
-        <p className="text-dark-text-secondary text-sm mb-4">
+        <p className="text-dark-text-secondary text-xs sm:text-sm mb-4">
           {t.subtitle}
         </p>
         
@@ -84,8 +84,8 @@ export default function Sidebar({
       </div>
 
       {/* 导航菜单 */}
-      <nav className="flex-1 py-6 overflow-y-auto">
-        <ul className="space-y-2 px-4">
+      <nav className="flex-1 py-4 sm:py-6 overflow-y-auto">
+        <ul className="space-y-2 px-2 sm:px-4">
           {chapters.map((chapter, index) => {
             const isCurrent = currentChapter === chapter.id
             // 判断章节是否已完成（基于用户解锁的最高章节）
@@ -164,12 +164,12 @@ export default function Sidebar({
 
                       {/* 章节标题 */}
                       <div className="flex-1">
-                        <span className="text-sm font-medium block">
+                        <span className="text-xs sm:text-sm font-medium block">
                           {chapter.title}
                         </span>
                         {/* 锁定提示 */}
                         {isLocked && (
-                          <span className="text-xs text-dark-text-muted mt-0.5 block">
+                          <span className="text-[10px] sm:text-xs text-dark-text-muted mt-0.5 block">
                             {language === 'zh' ? '完成上一步解锁' : 'Complete previous step'}
                           </span>
                         )}
@@ -219,11 +219,11 @@ export default function Sidebar({
       </nav>
 
       {/* 底部信息 */}
-      <div className="p-6 border-t border-dark-border flex-shrink-0">
-        <p className="text-xs text-dark-text-muted">
+      <div className="p-4 sm:p-6 border-t border-dark-border flex-shrink-0">
+        <p className="text-[10px] sm:text-xs text-dark-text-muted">
           {t.footer}
         </p>
-        <p className="text-xs text-dark-text-muted mt-1">
+        <p className="text-[10px] sm:text-xs text-dark-text-muted mt-1">
           {t.copyright}
         </p>
       </div>

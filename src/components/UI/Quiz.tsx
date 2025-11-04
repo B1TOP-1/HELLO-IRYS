@@ -26,7 +26,7 @@ interface QuizProps {
 
 export default function Quiz({ questions, chapterId, onComplete, onCancel }: QuizProps) {
   const { t } = useLanguage()
-  const { markChapterComplete } = useProgress()
+  const { markChapterComplete, getChapterProgress } = useProgress()
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedOptions, setSelectedOptions] = useState<Record<string, Set<string>>>({})
   const [showResults, setShowResults] = useState(false)
@@ -131,11 +131,11 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
         animate={{ opacity: 1, scale: 1 }}
         className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
       >
-        <motion.div
-          className="bg-dark-surface rounded-2xl p-8 max-w-md w-full shadow-2xl border border-dark-border"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-        >
+      <motion.div
+        className="bg-dark-surface rounded-2xl p-4 sm:p-6 md:p-8 max-w-md w-full mx-2 sm:mx-4 shadow-2xl border border-dark-border max-h-[90vh] overflow-y-auto"
+        initial={{ y: 20 }}
+        animate={{ y: 0 }}
+      >
           {allCorrect ? (
             <div className="text-center space-y-6">
               {/* 成功图标 */}
@@ -147,10 +147,31 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
                   </div>
                 </div>
               </div>
-              <h3 className="text-3xl font-bold text-green-400">{t.quiz.congratulations}</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-green-400">{t.quiz.congratulations}</h3>
               <p className="text-dark-text-secondary">
                 {t.quiz.congratulationsDesc}
               </p>
+              
+              {/* 进度显示 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-dark-text-secondary">
+                    {t.overallProgress || '章节进度'}
+                  </span>
+                  <span className="font-bold text-accent-primary">
+                    {getChapterProgress(chapterId)}%
+                  </span>
+                </div>
+                <div className="h-2 bg-dark-hover rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"
+                  />
+                </div>
+              </div>
+              
               <Button 
                 onClick={onComplete}
                 className="w-full"
@@ -169,22 +190,22 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
                   </div>
                 </div>
               </div>
-              <h3 className="text-3xl font-bold text-red-400">{t.quiz.answerIncorrect}</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-red-400">{t.quiz.answerIncorrect}</h3>
               <p className="text-dark-text-secondary">
                 {t.quiz.answerIncorrectDesc}
               </p>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
                   onClick={handleRetry}
                   variant="outline"
-                  className="flex-1"
+                  className="flex-1 w-full sm:w-auto"
                 >
                   {t.quiz.retryQuiz}
                 </Button>
                 <Button 
                   onClick={onCancel}
                   variant="ghost"
-                  className="flex-1"
+                  className="flex-1 w-full sm:w-auto"
                 >
                   {t.quiz.backToStudyBtn}
                 </Button>
@@ -204,7 +225,7 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
       className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
     >
       <motion.div
-        className="bg-dark-surface rounded-2xl p-8 max-w-2xl w-full shadow-2xl border border-dark-border"
+        className="bg-dark-surface rounded-2xl p-4 sm:p-6 md:p-8 max-w-2xl w-full mx-2 sm:mx-4 shadow-2xl border border-dark-border max-h-[90vh] overflow-y-auto"
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
       >
@@ -242,7 +263,7 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-dark-text-primary mb-6">
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-dark-text-primary mb-4 md:mb-6 leading-relaxed">
               {currentQuestion.question}
             </h3>
 
@@ -257,8 +278,8 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
                     key={option.id}
                     onClick={() => handleOptionToggle(option.id)}
                     className={`
-                      w-full p-4 rounded-xl text-left transition-all duration-200
-                      border-2 flex items-center gap-3
+                      w-full p-3 sm:p-4 rounded-xl text-left transition-all duration-200
+                      border-2 flex items-center gap-2 sm:gap-3
                       ${isSelected 
                         ? 'border-accent-primary bg-accent-primary/10' 
                         : 'border-dark-border bg-dark-bg hover:border-dark-hover'
@@ -308,7 +329,7 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
                       )}
                     </div>
                     
-                    <span className={`flex-1 ${isSelected ? 'text-dark-text-primary font-medium' : 'text-dark-text-secondary'}`}>
+                    <span className={`flex-1 text-sm sm:text-base ${isSelected ? 'text-dark-text-primary font-medium' : 'text-dark-text-secondary'}`}>
                       {option.text}
                     </span>
                   </motion.button>
@@ -330,19 +351,21 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
             </div>
 
             {/* 按钮 */}
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
               <Button
                 onClick={onCancel}
                 variant="ghost"
+                className="w-full sm:w-auto order-2 sm:order-1"
               >
                 {t.quiz.backToStudy}
               </Button>
               
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto order-1 sm:order-2">
                 {currentQuestionIndex > 0 && (
                   <Button
                     onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
                     variant="outline"
+                    className="w-full sm:w-auto"
                   >
                     {t.quiz.previousQuestion}
                   </Button>
@@ -351,6 +374,7 @@ export default function Quiz({ questions, chapterId, onComplete, onCancel }: Qui
                 <Button
                   onClick={handleNext}
                   disabled={!hasSelection()}
+                  className="w-full sm:w-auto"
                 >
                   {currentQuestionIndex === questions.length - 1 ? t.quiz.submitAnswer : t.quiz.nextQuestion}
                 </Button>

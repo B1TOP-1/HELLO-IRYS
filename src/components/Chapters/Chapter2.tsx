@@ -65,17 +65,17 @@ PRIVATE_KEY=your_private_key_here`
       className="space-y-8 w-full max-w-full overflow-hidden"
     >
       <div>
-        <h2 className="text-4xl font-bold gradient-text mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-3 md:mb-4">
           {t.chapter2.title}
         </h2>
-        <p className="text-dark-text-secondary text-lg">
+        <p className="text-dark-text-secondary text-base sm:text-lg">
           {t.chapter2.intro}
         </p>
       </div>
 
       <div className="space-y-6">
         <section>
-          <h3 className="text-2xl font-semibold mb-3 text-dark-text-primary">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2 md:mb-3 text-dark-text-primary">
             {language === 'zh' ? '1. ' + t.chapter2.install : '1. ' + t.chapter2.install}
           </h3>
           <p className="text-dark-text-secondary leading-relaxed mb-4">
@@ -123,7 +123,7 @@ PRIVATE_KEY=your_private_key_here`
         </section>
 
         <section>
-          <h3 className="text-2xl font-semibold mb-3 text-dark-text-primary">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2 md:mb-3 text-dark-text-primary">
             {language === 'zh' ? '2. ' + t.chapter2.setup : '2. ' + t.chapter2.setup}
           </h3>
           <p className="text-dark-text-secondary leading-relaxed mb-4">
@@ -144,15 +144,15 @@ PRIVATE_KEY=your_private_key_here`
       </div>
 
       {/* 测验和导航按钮区域 / Quiz and Navigation Area */}
-      <div className="pt-8 border-t border-dark-border">
-        <div className="flex justify-between items-center">
+      <div className="pt-6 md:pt-8 border-t border-dark-border">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
           <div>
-            <Button variant="ghost" onClick={onPrevious}>
+            <Button variant="ghost" onClick={onPrevious} className="w-full sm:w-auto">
               ← {t.previous}
             </Button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             {/* 开始测试按钮 / Start Quiz Button */}
             {!quizCompleted && (
               <motion.div
@@ -163,7 +163,7 @@ PRIVATE_KEY=your_private_key_here`
                 <Button
                   onClick={() => setShowQuiz(true)}
                   variant="outline"
-                  className="border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white"
+                  className="border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-white w-full sm:w-auto"
                 >
                   {t.common.startQuiz}
                 </Button>
@@ -172,14 +172,14 @@ PRIVATE_KEY=your_private_key_here`
 
             {/* 下一步按钮 - 测验完成前锁定 / Next Button - Locked Before Quiz Complete */}
             {quizCompleted ? (
-              <Button onClick={onNext}>
+              <Button onClick={onNext} className="w-full sm:w-auto">
                 {t.next} →
               </Button>
             ) : (
-              <div className="relative group">
+              <div className="relative group w-full sm:w-auto">
                 <Button
                   disabled
-                  className="opacity-50 cursor-not-allowed flex items-center gap-2"
+                  className="opacity-50 cursor-not-allowed flex items-center gap-2 w-full sm:w-auto"
                 >
                   <LockClosedIcon className="w-4 h-4" />
                   {t.next}

@@ -100,10 +100,10 @@ export default function Chapter4({ onNext, onPrevious }: ChapterProps) {
           </div>
         </motion.div>
 
-        <h2 className="text-5xl font-bold gradient-text mb-4 relative">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-3 md:mb-4 relative">
           {t.common.congratulations}
         </h2>
-        <p className="text-dark-text-secondary text-xl max-w-2xl mx-auto relative">
+        <p className="text-dark-text-secondary text-base sm:text-lg md:text-xl max-w-2xl mx-auto relative px-4">
           {t.common.understandingResponseDesc}
         </p>
       </motion.div>
@@ -174,7 +174,7 @@ export default function Chapter4({ onNext, onPrevious }: ChapterProps) {
       <div className="space-y-6">
         {/* 理解上传成功的响应数据 / Understanding Upload Success Response */}
         <section>
-          <h3 className="text-2xl font-semibold mb-3 text-dark-text-primary">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2 md:mb-3 text-dark-text-primary">
             {t.common.understandingResponse}
           </h3>
           <p className="text-dark-text-secondary leading-relaxed mb-4">
@@ -401,15 +401,15 @@ export default function Chapter4({ onNext, onPrevious }: ChapterProps) {
       </div>
 
       {/* 导航按钮区域 / Navigation Button Area */}
-      <div className="pt-8 border-t border-dark-border">
-        <div className="flex justify-between items-center">
+      <div className="pt-6 md:pt-8 border-t border-dark-border">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
           <div>
-            <Button variant="ghost" onClick={onPrevious}>
+            <Button variant="ghost" onClick={onPrevious} className="w-full sm:w-auto">
               ← {t.previous}
             </Button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             {/* 领取奖励按钮 / Claim Reward Button */}
             {!challengeAccepted && (
               <motion.div
@@ -430,14 +430,14 @@ export default function Chapter4({ onNext, onPrevious }: ChapterProps) {
 
             {/* 下一步按钮 / Next Step Button */}
             {challengeAccepted ? (
-              <Button onClick={onNext}>
+              <Button onClick={onNext} className="w-full sm:w-auto">
                 {t.next} →
               </Button>
             ) : (
-              <div className="relative group">
+              <div className="relative group w-full sm:w-auto">
                 <Button
                   disabled
-                  className="opacity-50 cursor-not-allowed flex items-center gap-2"
+                  className="opacity-50 cursor-not-allowed flex items-center gap-2 w-full sm:w-auto"
                 >
                   <LockClosedIcon className="w-4 h-4" />
                   {t.next}
@@ -458,7 +458,7 @@ export default function Chapter4({ onNext, onPrevious }: ChapterProps) {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="bg-dark-surface border border-dark-border rounded-3xl p-8 max-w-lg w-full mx-4 shadow-2xl relative overflow-hidden"
+            className="bg-dark-surface border border-dark-border rounded-3xl p-4 sm:p-6 md:p-8 max-w-lg w-full mx-4 shadow-2xl relative overflow-hidden"
           >
             {/* 背景装饰 / Background Decoration */}
             <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 via-transparent to-accent-secondary/10 pointer-events-none"></div>
@@ -483,19 +483,19 @@ export default function Chapter4({ onNext, onPrevious }: ChapterProps) {
             </div>
 
             {/* 标题 / Title */}
-            <h3 className="text-3xl font-bold text-center mb-4 text-dark-text-primary relative">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3 md:mb-4 text-dark-text-primary relative px-4">
               {language === 'zh' ? '恭喜你成功上传数据！' : 'Congratulations on Successfully Uploading Data!'}
             </h3>
 
             {/* 疑问句 / Question Text */}
-            <p className="text-lg text-center text-dark-text-secondary mb-8 relative">
+            <p className="text-base sm:text-lg text-center text-dark-text-secondary mb-6 md:mb-8 relative px-4">
               {language === 'zh' 
                 ? '是否准备好了领取奖励和接受挑战呢？' 
                 : 'Are you ready to claim your reward and accept the challenge?'}
             </p>
 
             {/* 按钮区域 / Buttons Area */}
-            <div className="grid grid-cols-2 gap-4 relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 relative">
               {/* 左：拒绝按钮 / Left: Reject Button */}
               <Button
                 onClick={handleDeclineChallenge}

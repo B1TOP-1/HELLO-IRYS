@@ -18,8 +18,8 @@ export default function CodeBlock({ code, language = 'javascript', title }: Code
           <span className="text-sm text-dark-text-secondary">{title}</span>
         </div>
       )}
-      <div className="bg-dark-surface p-4 overflow-x-auto">
-        <pre className="text-sm">
+      <div className="bg-dark-surface p-3 sm:p-4 overflow-x-auto">
+        <pre className="text-xs sm:text-sm">
           <code className={`language-${language} text-dark-text-primary`}>
             {code}
           </code>
