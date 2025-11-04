@@ -11,6 +11,7 @@ import {
   InfoCircledIcon
 } from '@radix-ui/react-icons'
 import Button from '../UI/Button'
+import nftGif from '../../../images/hello-irys-nft.gif'
 
 export default function MyNFTs() {
   const { t, language } = useLanguage()
@@ -86,7 +87,7 @@ export default function MyNFTs() {
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
             <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-2 sm:p-3 shadow-2xl">
               <img
-                src="https://file.notion.so/f/f/805c8ee6-d632-43a5-bb85-5b1e2e4a9000/a9d1ae37-80d6-4360-8a8d-fc65e52102b5/Discord_PFP_Teal.gif?table=block&id=189e9455-e498-8035-b188-f1ff4c0fb8c9&spaceId=805c8ee6-d632-43a5-bb85-5b1e2e4a9000&expirationTimestamp=1762192800000&signature=E63oVInCyM-SIZzkebT0qJBn7b4YA4ILYcFQ4c6hoRU"
+                src={nftGif}
                 alt="HELLO IRYS NFT"
                 className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover rounded-xl shadow-lg"
               />

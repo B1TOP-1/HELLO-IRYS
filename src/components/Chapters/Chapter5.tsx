@@ -17,6 +17,7 @@ import {
   LockClosedIcon
 } from '@radix-ui/react-icons'
 import { ChallengeModal } from '../Challenges/ChallengeModal'
+import nftGif from '../../../images/hello-irys-nft.gif'
 
 interface ChapterProps {
   onNext: () => void
@@ -130,7 +131,7 @@ export default function Chapter5({ onNext: _onNext, onPrevious, isLast }: Chapte
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
               <div className="relative bg-dark-surface border-2 border-purple-500/50 rounded-2xl p-2 md:p-3 shadow-2xl">
                 <img
-                  src="https://file.notion.so/f/f/805c8ee6-d632-43a5-bb85-5b1e2e4a9000/a9d1ae37-80d6-4360-8a8d-fc65e52102b5/Discord_PFP_Teal.gif?table=block&id=189e9455-e498-8035-b188-f1ff4c0fb8c9&spaceId=805c8ee6-d632-43a5-bb85-5b1e2e4a9000&expirationTimestamp=1762192800000&signature=E63oVInCyM-SIZzkebT0qJBn7b4YA4ILYcFQ4c6hoRU"
+                  src={nftGif}
                   alt="HELLO IRYS NFT"
                   className="w-full h-auto aspect-square object-cover rounded-xl shadow-lg"
                 />
