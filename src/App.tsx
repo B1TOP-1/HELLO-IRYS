@@ -12,8 +12,6 @@ import Chapter4 from './components/Chapters/Chapter4'
 import Chapter5 from './components/Chapters/Chapter5'
 import MyNFTs from './components/NFT/MyNFTs'
 
-const WELCOME_SEEN_KEY = 'irys-welcome-seen'
-
 function AppContent() {
   const [showWelcome, setShowWelcome] = useState(true)
   const [currentChapter, setCurrentChapter] = useState(1)
